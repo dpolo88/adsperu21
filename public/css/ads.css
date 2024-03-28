@@ -1,0 +1,8 @@
+#ads_zocalo{
+    position: fixed;
+    bottom: 0;
+    z-index: 9;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+}
