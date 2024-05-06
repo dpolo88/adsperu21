@@ -63,6 +63,14 @@ const spacesPeru21 = [
         'web' : 'nota',
         'space': 'inline'
     }, {
+        'id': 'ads_caja2',
+        'dimensions': [],
+        'dimensions_mobile': [[300, 250], [300, 600]],
+        'dispositivo': 'desktop',
+        'web' : 'nota',
+        'space': 'caja2'
+    }, {
+    }, {
         'id': 'ads_caja3',
         'dimensions': [],
         'dimensions_mobile': [300, 250],
@@ -137,7 +145,7 @@ const pageType = class PageType {
         } else {
             nomSeccionVar = window.location.pathname.split('/')[1].replace(/-/, '');
         }
-        return nomSeccionVar.toLowerCase();
+        return this.removeAccents(nomSeccionVar.toLowerCase());
     }
 
     static tipoPagina() {
@@ -157,19 +165,15 @@ const _isTipoPagina = pageType.tipoPagina();
 const _device = device();
 const _section = pageType.nomSeccion();
 
+window._isTipoPagina = _isTipoPagina;
+window._device = _device;
+window._section = _section;
+
 const fuenteFunc = () => {
-    const sect = (_isTipoPagina === 'nota') ? '_' : '';
+    const sect = (_isTipoPagina === 'nota' || _isTipoPagina === 'seccion') ? '_' : '';
     console.log(`/22946950648/peru21_${_isTipoPagina}${sect}${_section}_` )
     return `/22946950648/peru21_${_isTipoPagina}${sect}${_section}_` 
 }
-
-const s = `https://d1r08wok4169a5.cloudfront.net/gpt-adtmp/ads-formats-v2/public/css/ads-styles-${_device}.css`
-const _head = document.getElementsByTagName('head')[0]
-const _link = document.createElement('link')
-_link.rel = 'stylesheet'
-_link.type = 'text/css'
-_link.href = s
-_head.appendChild(_link)
 
 const fuente = fuenteFunc();
 
@@ -213,6 +217,7 @@ googletag.cmd.push(function() {
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
         const definedSlot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
+        console.log('slot => ', definedSlot)
             googletag.pubads().enableLazyLoad({
                 fetchMarginPercent: 100,
                 renderMarginPercent: 100,
@@ -222,20 +227,46 @@ const newLazyLoad = (input) => {
     });
 }
 
-const spacesCollection = spacesPeru21.filter(function(input) {
+window.spacesCollection = []; 
+const spacesCollection1 = spacesPeru21.filter(function(input) {
     const getSlot = document.getElementById(input.id);
     const gptDisplay = document.createElement('script');
     if(getSlot){
-        if (input.dispositivo.indexOf(_device) !== -1 && input.web.indexOf(_isTipoPagina) !== -1){
+        if (input.dispositivo.includes(_device) && input.web.includes(_isTipoPagina)){
             if (_device === 'mobile') {
                 input.dimensions = input.dimensions_mobile;
             }
+            window.spacesCollection.push(input)
             gptDisplay.textContent = newLazyLoad(input)
             getSlot.append(gptDisplay);
         }
     }
     return false
 }) || []
-window.spacesCollection = spacesCollection;
+//window.spacesCollection = spacesCollection1; 
 
-    
+let adItt = true
+
+const funcItt = function () {
+    adItt = false
+
+    window.googletag = window.googletag || { cmd: [] }
+
+    googletag.cmd.push(function () {
+        const interstitialSlot = googletag.defineOutOfPageSlot(
+                `${fuente}interstitial`,
+                googletag.enums.OutOfPageFormat.INTERSTITIAL
+            )
+
+            if (interstitialSlot) {
+                interstitialSlot.addService(googletag.pubads())
+            }
+
+            googletag.enableServices()
+            googletag.display(interstitialSlot)
+    })
+}
+
+if(adItt){
+    funcItt()
+}
