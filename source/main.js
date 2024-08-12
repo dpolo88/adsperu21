@@ -58,14 +58,14 @@ const spacesPeru21 = [
     }, {
         'id': 'ads_inline',
         'dimensions': [1, 1],
-        'dimensions_mobile': [],
-        'dispositivo': 'desktop',
+        'dimensions_mobile': [1, 1],
+        'dispositivo': 'desktop,mobile',
         'web' : 'nota',
         'space': 'inline'
     }, {
         'id': 'ads_caja2',
-        'dimensions': [],
-        'dimensions_mobile': [[300, 250], [300, 600]],
+        'dimensions': [[300, 250], [300, 600]],
+        'dimensions_mobile': [],
         'dispositivo': 'desktop',
         'web' : 'nota',
         'space': 'caja2'
@@ -171,7 +171,6 @@ window._section = _section;
 
 const fuenteFunc = () => {
     const sect = (_isTipoPagina === 'nota' || _isTipoPagina === 'seccion') ? '_' : '';
-    console.log(`/22946950648/peru21_${_isTipoPagina}${sect}${_section}_` )
     return `/22946950648/peru21_${_isTipoPagina}${sect}${_section}_` 
 }
 
@@ -217,7 +216,6 @@ googletag.cmd.push(function() {
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
         const definedSlot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
-        console.log('slot => ', definedSlot)
             googletag.pubads().enableLazyLoad({
                 fetchMarginPercent: 100,
                 renderMarginPercent: 100,
