@@ -159,11 +159,39 @@ const pageType = class PageType {
         }
         return tipoPagina;
     }
+
+    static tags() {
+        let nomTags = '';
+        const eTagsValues = []
+        let eTags = []
+        if (this.isPortada()){
+            nomTags = 'home';
+        } else if(this.isNota()){
+            eTags = Array.from(document.querySelectorAll("meta[property='article:tag']"))
+            eTags.forEach(function(element) {
+                if(element.content){
+                    eTagsValues.push(element.content);
+               }
+            });
+            nomTags = eTagsValues.join().toLowerCase().replace(/ /g, '')
+        } else {
+            nomTags = 'seccion';
+        }
+        console.log(nomTags)
+        return nomTags;
+    }
+
+    static getTmpAd () {
+        const tmpAdTargeting = window.location.search.match(/tmp_ad=([^&]*)/) || [];
+        return tmpAdTargeting[1] || ''
+    }
 }
 
 const _isTipoPagina = pageType.tipoPagina();
 const _device = device();
 const _section = pageType.nomSeccion();
+const _tags = pageType.tags();
+const _tmpAd = pageType.getTmpAd();
 
 window._isTipoPagina = _isTipoPagina;
 window._device = _device;
@@ -184,35 +212,13 @@ googletag.cmd.push(function() {
     googletag.enableServices();
 });
 
+googletag.cmd.push(() => {
+    googletag.pubads().setTargeting('seccion', _section);
+    googletag.pubads().setTargeting('tags', _tags);
+    googletag.pubads().setTargeting('tmp_ad', _tmpAd);
+    googletag.enableServices();
+})
 
-/*
-    googletag.cmd.push(() => {
-        googletag.pubads().setTargeting('categoria', _target.categoria);
-        googletag.pubads().setTargeting('contenido', _target.contenido);
-        googletag.pubads().setTargeting('fuente', _target.fuente);
-        googletag.pubads().setTargeting('paywall', _target.paywall);
-        googletag.pubads().setTargeting('phatname', _target.phatname);
-        googletag.pubads().setTargeting('publisher', _target.publisher);
-        googletag.pubads().setTargeting('seccion', _target.seccion);
-        googletag.pubads().setTargeting('tags', _target.tags);
-        googletag.pubads().setTargeting('tipoplantilla', _target.tipoplantilla);
-        googletag.pubads().setTargeting('tmp_ad', _target.tmp_ad);
-        if(isMinutoaMinuto){
-            googletag.pubads().setTargeting('tipoplantillanota', 'mam');
-        }
-        googletag.pubads().addEventListener('impressionViewable', (event) => {
-            const slot = event.slot;
-            const slotID = slot.getSlotElementId();
-            if(slotID === 'ads_zocalo' || slotID === 'ads_caja1' || slotID === 'ads_caja2' || slotID === 'ads_caja3'){
-                setTimeout(() => {
-                    googletag.pubads().refresh([slot])
-                }, 30 * 1000)
-            }
-        });
-        googletag.enableServices();
-    })
-*/
-   
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
         const definedSlot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
