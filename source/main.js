@@ -210,6 +210,16 @@ window.Slot = null;
 googletag.cmd.push(function() {
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
+
+    const screenWidth = window.innerWidth;
+    const script = document.createElement(
+    'script');
+    script.async = true;
+    script.src = screenWidth < 800 ?
+    'https://stpd.cloud/saas/8810' :
+    'https://stpd.cloud/saas/8809';
+    document.head.appendChild(script);
+
 });
 
 googletag.cmd.push(() => {
