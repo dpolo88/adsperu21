@@ -119,15 +119,15 @@ const pageType = class PageType {
     }
 
     static isPortada() {
-        return this.BodyClass().search('path-frontpage') !== -1;
+        return this.BodyClass().search('home') !== -1;
     }
 
     static isSeccion() {
-        return this.BodyClass().search('path-taxonomy') !== -1;
+        return this.BodyClass().search('category') !== -1;
     }
 
     static isNota() {
-        return this.BodyClass().search('path-node') !== -1;
+        return this.BodyClass().search('post-template-default') !== -1;
     }
 
     static nomSeccion() {
@@ -135,7 +135,7 @@ const pageType = class PageType {
         if (this.isPortada()){
             nomSeccionVar = '';
         } else if(this.isNota()){
-            const metatag = document.querySelector("meta[property='article:section']");
+            const metatag = document.querySelector("meta[property='category']");
             if(metatag){
                 const section = metatag.getAttribute('content') || 'default'
                 nomSeccionVar = section;
