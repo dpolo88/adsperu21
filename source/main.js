@@ -138,7 +138,7 @@ const pageType = class PageType {
             const metatag = document.querySelector("meta[property='category']");
             if(metatag){
                 const section = metatag.getAttribute('content') || 'default'
-                nomSeccionVar = section;
+                nomSeccionVar = section.replace(/\s/g, '');
             } else {
                 nomSeccionVar = 'default'
             }
@@ -167,7 +167,7 @@ const pageType = class PageType {
         if (this.isPortada()){
             nomTags = 'home';
         } else if(this.isNota()){
-            eTags = Array.from(document.querySelectorAll("meta[property='article:tag']"))
+            eTags = Array.from(document.querySelectorAll("meta[property='tag']"))
             eTags.forEach(function(element) {
                 if(element.content){
                     eTagsValues.push(element.content);
@@ -257,7 +257,7 @@ const spacesCollection1 = spacesPeru21.filter(function(input) {
     }
     return false
 }) || []
-//window.spacesCollection = spacesCollection1; 
+window.spacesCollection = spacesCollection1; 
 
 let adItt = true
 
