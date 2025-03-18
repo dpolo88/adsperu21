@@ -143,7 +143,7 @@ const pageType = class PageType {
                 nomSeccionVar = 'default'
             }
         } else {
-            nomSeccionVar = window.location.pathname.split('/')[1].replace(/-/, '');
+            nomSeccionVar = window.location.pathname.split('/')[2].replace(/-/, '');
         }
         return this.removeAccents(nomSeccionVar.toLowerCase());
     }
