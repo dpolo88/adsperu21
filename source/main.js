@@ -8,8 +8,8 @@ const spacesPeru21 = [
         'space': 'interstitial'
     }, {
         'id': 'ads_top',
-        'dimensions': [728, 90],
-        'dimensions_mobile': [320, 50],
+        'dimensions': [[970, 90], [728, 90], 'fluid'],
+        'dimensions_mobile': [[320, 100], [300, 100], [300, 50], [320, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
         'space': 'top'
@@ -22,29 +22,29 @@ const spacesPeru21 = [
         'space': 'caja1'
     }, {
         'id': 'ads_caja1',
-        'dimensions': [[300, 250], [300, 600]],
-        'dimensions_mobile': [],
+        'dimensions': [[1, 1], [300, 250], [300, 600], 'fluid'],
+        'dimensions_mobile': [[1, 1], [336, 280], [300, 600], [300, 250], [250, 250], 'fluid'],
         'dispositivo': 'desktop',
         'web' : 'nota',
         'space': 'caja1'
     }, {
         'id': 'ads_laterall',
-        'dimensions': [[160, 600], [120, 600]],
+        'dimensions': [[160, 600], [120, 600], 'fluid'],
         'dimensions_mobile': [],
         'dispositivo': 'desktop',
         'web' : 'home,seccion,nota',
         'space': 'laterall'
     }, {
         'id': 'ads_lateralr',
-        'dimensions': [[160, 600], [120, 600]],
+        'dimensions': [[160, 600], [120, 600], 'fluid'],
         'dimensions_mobile': [],
         'dispositivo': 'desktop',
         'web' : 'home,seccion,nota',
         'space': 'lateralr'
     }, {
         'id': 'ads_zocalo',
-        'dimensions': [728, 90],
-        'dimensions_mobile': [320, 50],
+        'dimensions': [[1, 1], [728, 90], 'fluid'],
+        'dimensions_mobile': [[320, 100], [300, 100], [320, 50], [300, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
         'space': 'zocalo'
@@ -137,7 +137,7 @@ const pageType = class PageType {
         } else if(this.isNota()){
             nomSeccionVar = window.location.pathname.split('/')[1].replace(/-/, '');
         } else {
-            nomSeccionVar = window.location.pathname.split('/')[2].replace(/-/, '');
+            nomSeccionVar = window.location.pathname.split('/')[1].replace(/-/, '');
         }
         return this.removeAccents(nomSeccionVar.toLowerCase());
     }
@@ -161,7 +161,7 @@ const pageType = class PageType {
         if (this.isPortada()){
             nomTags = 'home';
         } else if(this.isNota()){
-            eTags = Array.from(document.querySelectorAll("meta[property='tag']"))
+            eTags = Array.from(document.querySelectorAll("meta[property='article:tag']"))
             eTags.forEach(function(element) {
                 if(element.content){
                     eTagsValues.push(element.content);
@@ -251,7 +251,7 @@ const spacesCollection1 = spacesPeru21.filter(function(input) {
     }
     return false
 }) || []
-window.spacesCollection = spacesCollection1; 
+//window.spacesCollection = spacesCollection1; 
 
 let adItt = true
 
