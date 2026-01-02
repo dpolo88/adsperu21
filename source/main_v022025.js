@@ -1,96 +1,98 @@
 const spacesPeru21 = [
     {
+        'id': 'ads_interstitial',
+        'dispositivo': 'desktop,mobile',
+        'web' : 'home,seccion,nota',
+        'dimensions': [1, 1],
+        'dimensions_mobile': [1, 1],
+        'space': 'interstitial'
+    }, {
         'id': 'ads_top',
-        'dimensions': [[728, 90], [970, 250], [900, 30], 'fluid'],
+        'dimensions': [[970, 90], [728, 90], 'fluid'],
         'dimensions_mobile': [[320, 100], [300, 100], [300, 50], [320, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
-        'space': 'top',
-        'ejecucion' : 'sra'
+        'space': 'top'
     }, {
         'id': 'ads_caja1',
-        'dimensions': [[300, 250], [300, 600], [160, 600], [120, 600], 'fluid'],
+        'dimensions': [[300, 250], [300, 600]],
         'dimensions_mobile': [[300, 250], [300, 600]],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion',
-        'space': 'caja1',
-        'ejecucion' : 'sra'
+        'space': 'caja1'
     }, {
         'id': 'ads_caja1',
-        'dimensions': [[300, 250], [300, 600], [160, 600], [120, 600], 'fluid'],
-        'dimensions_mobile': [],
+        'dimensions': [[1, 1], [300, 250], [300, 600], 'fluid'],
+        'dimensions_mobile': [[1, 1], [336, 280], [300, 600], [300, 250], [250, 250], 'fluid'],
         'dispositivo': 'desktop',
         'web' : 'nota',
-        'space': 'caja1',
-        'ejecucion' : 'sra'
+        'space': 'caja1'
+    }, {
+        'id': 'ads_laterall',
+        'dimensions': [[160, 600], [120, 600], 'fluid'],
+        'dimensions_mobile': [],
+        'dispositivo': 'desktop',
+        'web' : 'home,seccion,nota',
+        'space': 'laterall'
+    }, {
+        'id': 'ads_lateralr',
+        'dimensions': [[160, 600], [120, 600], 'fluid'],
+        'dimensions_mobile': [],
+        'dispositivo': 'desktop',
+        'web' : 'home,seccion,nota',
+        'space': 'lateralr'
     }, {
         'id': 'ads_zocalo',
-        'dimensions': [[728, 90], [468, 60]],
-        'dimensions_mobile': [320, 50],
+        'dimensions': [[1, 1], [728, 90], 'fluid'],
+        'dimensions_mobile': [[320, 100], [300, 100], [320, 50], [300, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
-        'space': 'zocalo',
-        'ejecucion' : 'sra'
+        'space': 'zocalo'
     }, {
         'id': 'ads_vslider',
         'dimensions': [1, 1],
         'dimensions_mobile': [1, 1],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
-        'space': 'vslider',
-        'ejecucion' : 'lazyload'
+        'space': 'vslider'
     }, {
         'id': 'ads_inline',
-        'dimensions': [[1, 1], [850, 400], [640, 360], [336, 280], [300, 250], [320, 240], [320, 50], 'fluid'],
+        'dimensions': [1, 1],
         'dimensions_mobile': [1, 1],
         'dispositivo': 'desktop,mobile',
         'web' : 'nota',
-        'space': 'inline',
-        'ejecucion' : 'lazyload'
-    }, {
-        'id': 'ads_intext',
-        'dimensions': [[1, 1], [850, 400], [640, 360], [336, 280], [300, 250], [320, 240], 'fluid'],
-        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], 'fluid'],
-        'dispositivo': 'desktop,mobile',
-        'web' : 'nota',
-        'space': 'intext',
-        'ejecucion' : 'lazyload'
+        'space': 'inline'
     }, {
         'id': 'ads_caja2',
-        'dimensions': [[300, 250], [300, 600], [160, 600], [120, 600], 'fluid'],
+        'dimensions': [[300, 250], [300, 600]],
         'dimensions_mobile': [],
         'dispositivo': 'desktop',
         'web' : 'nota',
-        'space': 'caja2',
-        'ejecucion' : 'lazyload'
+        'space': 'caja2'
+    }, {
     }, {
         'id': 'ads_caja3',
         'dimensions': [],
-        'dimensions_mobile': [[360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], [350, 250], 'fluid'],
+        'dimensions_mobile': [300, 250],
         'dispositivo': 'mobile',
         'web' : 'nota',
-        'space': 'caja3',
-        'ejecucion' : 'lazyload'
+        'space': 'caja3'
     }, {
         'id': 'ads_caja4',
         'dimensions': [], 
-        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], [350, 250], 'fluid'],
+        'dimensions_mobile': [300, 250],
         'dispositivo': 'mobile',
         'web' : 'nota',
-        'space': 'caja4',
-        'ejecucion' : 'lazyload'
+        'space': 'caja4'
     }, {
         'id': 'ads_caja5',
         'dimensions': [],
-        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], [350, 250], 'fluid'],
+        'dimensions_mobile': [300, 250],
         'dispositivo': 'mobile',
         'web' : 'nota',
-        'space': 'caja5',
-        'ejecucion' : 'lazyload'
+        'space': 'caja5'
     },
 ]
-
-window.spacesPeru21 = spacesPeru21
 
 const device = function () {
     const ua = navigator.userAgent;
@@ -199,6 +201,28 @@ const fuente = fuenteFunc();
 window.googletag = window.googletag || {cmd: []};
 window.Slot = null;
 
+googletag.cmd.push(function() {
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+
+    const screenWidth = window.innerWidth;
+    const script = document.createElement(
+    'script');
+    script.async = true;
+    script.src = screenWidth < 800 ?
+    'https://stpd.cloud/saas/8810' :
+    'https://stpd.cloud/saas/8809';
+    document.head.appendChild(script);
+
+});
+
+googletag.cmd.push(() => {
+    googletag.pubads().setTargeting('seccion', _section);
+    googletag.pubads().setTargeting('tags', _tags);
+    googletag.pubads().setTargeting('tmp_ad', _tmpAd);
+    googletag.enableServices();
+})
+
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
         const definedSlot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
@@ -211,66 +235,23 @@ const newLazyLoad = (input) => {
     });
 }
 
-// SRA
-const adsCollectionSra = spacesPeru21.filter((input) => {
-    const getSlot = document.getElementById(input.id);
-    if(getSlot){
-        if (input.dispositivo.includes(_device) && input.web.includes(_isTipoPagina) && input.ejecucion === 'sra'){
-            if (_device === 'mobile') {
-                input.dimensions = input.dimensions_mobile;
-            }
-            return input
-        }
-    } 
-    return false
-});
-
-const adsCollectionLazyload = spacesPeru21.filter((input) => {
-    const getSlot = document.getElementById(input.id);
-    if(getSlot){
-        if (input.dispositivo.includes(_device) && input.web.includes(_isTipoPagina) && input.ejecucion === 'lazyload'){
-            if (_device === 'mobile') {
-                input.dimensions = input.dimensions_mobile;
-            }
-            return input
-        }
-    } 
-    return false
-});
-
-window.adsCollectionSra = adsCollectionSra
-window.adsCollectionLazyload = adsCollectionLazyload; 
-
-//SRA
-googletag.cmd.push(() => {
-    console.log('sra')
-    adsCollectionSra.forEach((input) => {
-        let slot = null;
-        slot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
-    })
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-    googletag.pubads().refresh();
-})
-
-
-// LAZYLOAD
-const spacesCollection1 = adsCollectionLazyload.forEach(function(input) {
+window.spacesCollection = []; 
+const spacesCollection1 = spacesPeru21.filter(function(input) {
     const getSlot = document.getElementById(input.id);
     const gptDisplay = document.createElement('script');
     if(getSlot){
-        gptDisplay.textContent = newLazyLoad(input)
-        getSlot.append(gptDisplay);
-        console.log(input)
+        if (input.dispositivo.includes(_device) && input.web.includes(_isTipoPagina)){
+            if (_device === 'mobile') {
+                input.dimensions = input.dimensions_mobile;
+            }
+            window.spacesCollection.push(input)
+            gptDisplay.textContent = newLazyLoad(input)
+            getSlot.append(gptDisplay);
+        }
     }
-})
-
-googletag.cmd.push(() => {
-    googletag.pubads().setTargeting('seccion', _section);
-    googletag.pubads().setTargeting('tags', _tags);
-    googletag.pubads().setTargeting('tmp_ad', _tmpAd);
-    googletag.enableServices();
-})
+    return false
+}) || []
+//window.spacesCollection = spacesCollection1; 
 
 let adItt = true
 
