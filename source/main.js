@@ -246,7 +246,12 @@ googletag.cmd.push(() => {
     console.log('sra')
     adsCollectionSra.forEach((input) => {
         let slot = null;
-        slot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
+        if(input.id === 'ads_zocalo'){
+            slot = googletag.defineOutOfPageSlot(`${fuente}${input.space}`, googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR)
+            slot.setTargeting('test', 'anchor').addService(googletag.pubads())
+        } else {
+            slot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
+        }
     })
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
@@ -269,6 +274,19 @@ googletag.cmd.push(() => {
     googletag.pubads().setTargeting('seccion', _section);
     googletag.pubads().setTargeting('tags', _tags);
     googletag.pubads().setTargeting('tmp_ad', _tmpAd);
+
+    googletag.pubads().addEventListener('impressionViewable', (event) => {
+        const slot = event.slot;
+        const slotID = slot.getSlotElementId();
+
+        if(slotID === `gpt_unit_${fuente}zocalo_0` || slotID === 'ads_zocalo'){
+            setTimeout(() => {
+                googletag.pubads().refresh([slot])
+            }, 30 * 1000)
+            console.log(`refresh on ${slotID} (30 seg)`);
+        }                
+    });
+
     googletag.enableServices();
 })
 
