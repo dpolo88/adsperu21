@@ -1,7 +1,7 @@
 const spacesPeru21 = [
     {
         'id': 'ads_top',
-        'dimensions': [[728, 90], [970, 250], [900, 30], 'fluid'],
+        'dimensions': [[728, 90], [970, 250], [900, 30], [970, 90], 'fluid'],
         'dimensions_mobile': [[320, 100], [300, 100], [300, 50], [320, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
@@ -26,7 +26,7 @@ const spacesPeru21 = [
     }, {
         'id': 'ads_zocalo',
         'dimensions': [[728, 90], [468, 60]],
-        'dimensions_mobile': [320, 50],
+        'dimensions_mobile': [[320, 180], [320, 110], [320, 50], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
         'space': 'zocalo',
@@ -42,7 +42,7 @@ const spacesPeru21 = [
     }, {
         'id': 'ads_inline',
         'dimensions': [[1, 1], [850, 400], [640, 360], [336, 280], [300, 250], [320, 240], [320, 50], 'fluid'],
-        'dimensions_mobile': [1, 1],
+        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'nota',
         'space': 'inline',
