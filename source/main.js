@@ -38,18 +38,18 @@ const spacesPeru21 = [
         'dispositivo': 'desktop,mobile',
         'web' : 'home,seccion,nota',
         'space': 'vslider',
-        'ejecucion' : 'lazyload'
+        'ejecucion' : 'sra'
     }, {
         'id': 'ads_inline',
-        'dimensions': [[1, 1], [850, 400], [640, 360], [336, 280], [300, 250], [320, 240], [320, 50], 'fluid'],
+        'dimensions': [[1, 1], [640, 360], [336, 280], [300, 250], [320, 240], [320, 50], 'fluid'],
         'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], 'fluid'],
         'dispositivo': 'desktop,mobile',
-        'web' : 'nota',
+        'web' : 'home,nota',
         'space': 'inline',
         'ejecucion' : 'lazyload'
     }, {
         'id': 'ads_intext',
-        'dimensions': [[1, 1], [850, 400], [640, 360], [336, 280], [300, 250], [320, 240], 'fluid'],
+        'dimensions': [[1, 1], [640, 360], [336, 280], [300, 250], [320, 240], 'fluid'],
         'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'nota',
@@ -202,12 +202,13 @@ window.Slot = null;
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
         const definedSlot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
-            googletag.pubads().enableLazyLoad({
-                fetchMarginPercent: 100,
-                renderMarginPercent: 100,
-                mobileScaling: 2.0,
-            });
-            googletag.pubads().refresh([definedSlot]);
+        googletag.pubads().enableLazyLoad({
+            fetchMarginPercent: 100,
+            renderMarginPercent: 100,
+            mobileScaling: 2.0,
+        });
+        googletag.pubads().refresh([definedSlot]);
+        console.log('lazyload ', input)
     });
 }
 
@@ -243,7 +244,6 @@ window.adsCollectionLazyload = adsCollectionLazyload;
 
 //SRA
 googletag.cmd.push(() => {
-    console.log('sra')
     adsCollectionSra.forEach((input) => {
         let slot = null;
         if(input.id === 'ads_zocalo'){
@@ -256,8 +256,8 @@ googletag.cmd.push(() => {
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
     googletag.pubads().refresh();
+    console.log('sra ads')
 })
-
 
 // LAZYLOAD
 const spacesCollection1 = adsCollectionLazyload.forEach(function(input) {
