@@ -266,7 +266,6 @@ const spacesCollection1 = adsCollectionLazyload.forEach(function(input) {
     if(getSlot){
         gptDisplay.textContent = newLazyLoad(input)
         getSlot.append(gptDisplay);
-        console.log(input)
     }
 })
 
