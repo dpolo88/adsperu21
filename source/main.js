@@ -50,7 +50,7 @@ const spacesPeru21 = [
     }, {
         'id': 'ads_intext',
         'dimensions': [[1, 1], [640, 360], [336, 280], [300, 250], [320, 240], 'fluid'],
-        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], 'fluid'],
+        'dimensions_mobile': [[1, 1], [360, 480], [336, 280], [320, 240], [320, 180], [300, 250], [350, 250], [320, 100], [320, 250], 'fluid'],
         'dispositivo': 'desktop,mobile',
         'web' : 'nota',
         'space': 'intext',
@@ -222,7 +222,7 @@ const adsCollectionSra = spacesPeru21.filter((input) => {
             }
             return input
         }
-    } 
+    }
     return false
 });
 
@@ -235,7 +235,7 @@ const adsCollectionLazyload = spacesPeru21.filter((input) => {
             }
             return input
         }
-    } 
+    }
     return false
 });
 
@@ -247,7 +247,12 @@ googletag.cmd.push(() => {
     adsCollectionSra.forEach((input) => {
         let slot = null;
         if(input.id === 'ads_zocalo'){
-            slot = googletag.defineOutOfPageSlot(`${fuente}${input.space}`, googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR)
+            const mappingZocalo = googletag
+                .sizeMapping()
+                .addSize([0, 0], input.dimensions)
+                .addSize([768, 0], input.dimensions)
+                .build();
+            slot = googletag.defineOutOfPageSlot(`${fuente}${input.space}`, googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR).defineSizeMapping(mappingZocalo)
             slot.setTargeting('test', 'anchor').addService(googletag.pubads())
         } else {
             slot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
@@ -273,18 +278,6 @@ googletag.cmd.push(() => {
     googletag.pubads().setTargeting('seccion', _section);
     googletag.pubads().setTargeting('tags', _tags);
     googletag.pubads().setTargeting('tmp_ad', _tmpAd);
-
-    googletag.pubads().addEventListener('impressionViewable', (event) => {
-        const slot = event.slot;
-        const slotID = slot.getSlotElementId();
-
-        if(slotID === `gpt_unit_${fuente}zocalo_0` || slotID === 'ads_zocalo'){
-            setTimeout(() => {
-                googletag.pubads().refresh([slot])
-            }, 30 * 1000)
-            console.log(`refresh on ${slotID} (30 seg)`);
-        }                
-    });
 
     googletag.enableServices();
 })
