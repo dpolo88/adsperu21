@@ -196,8 +196,8 @@ const fuenteFunc = () => {
 
 const fuente = fuenteFunc();
 
+stpd = window.stpd || {que: []};
 window.googletag = window.googletag || {cmd: []};
-window.Slot = null;
 
 const newLazyLoad = (input) => {
     googletag.cmd.push(function () {
@@ -244,6 +244,7 @@ window.adsCollectionLazyload = adsCollectionLazyload;
 
 //SRA
 googletag.cmd.push(() => {
+    googletag.pubads().disableInitialLoad();
     adsCollectionSra.forEach((input) => {
         let slot = null;
         if(input.id === 'ads_zocalo'){
@@ -261,7 +262,7 @@ googletag.cmd.push(() => {
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
     googletag.pubads().refresh();
-    console.log('sra ads')
+    console.log('sra ads 2')
 })
 
 // LAZYLOAD
@@ -307,3 +308,8 @@ const funcItt = function () {
 if(adItt){
     funcItt()
 }
+
+const script = document.createElement('script');
+script.async = true;
+script.src = 'https://stpd.cloud/saas/10841';
+document.head.appendChild(script);
