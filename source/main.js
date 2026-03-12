@@ -262,7 +262,7 @@ googletag.cmd.push(() => {
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
     googletag.pubads().refresh();
-    console.log('sra ads 2')
+    console.log('sra ads 3')
 })
 
 // LAZYLOAD
@@ -308,8 +308,3 @@ const funcItt = function () {
 if(adItt){
     funcItt()
 }
-
-const script = document.createElement('script');
-script.async = true;
-script.src = 'https://stpd.cloud/saas/10841';
-document.head.appendChild(script);
