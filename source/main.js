@@ -196,7 +196,7 @@ const fuenteFunc = () => {
 
 const fuente = fuenteFunc();
 
-stpd = window.stpd || {que: []};
+window.stpd = window.stpd || {que: []};
 window.googletag = window.googletag || {cmd: []};
 
 const newLazyLoad = (input) => {
@@ -262,7 +262,7 @@ googletag.cmd.push(() => {
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
     googletag.pubads().refresh();
-    console.log('sra ads 3')
+    console.log('sra ads 4')
 })
 
 // LAZYLOAD
