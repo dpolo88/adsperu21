@@ -244,7 +244,6 @@ window.adsCollectionLazyload = adsCollectionLazyload;
 
 //SRA
 googletag.cmd.push(() => {
-    googletag.pubads().disableInitialLoad();
     adsCollectionSra.forEach((input) => {
         let slot = null;
         if(input.id === 'ads_zocalo'){
@@ -259,10 +258,11 @@ googletag.cmd.push(() => {
             slot = googletag.defineSlot(`${fuente}${input.space}`, input.dimensions, input.id).addService(googletag.pubads());
         }
     })
+    googletag.pubads().disableInitialLoad();
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
     googletag.pubads().refresh();
-    console.log('sra ads 4')
+    console.log('sra ads 6')
 })
 
 // LAZYLOAD
