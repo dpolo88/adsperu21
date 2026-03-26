@@ -261,8 +261,7 @@ googletag.cmd.push(() => {
     googletag.pubads().disableInitialLoad();
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
-    googletag.pubads().refresh();
-    console.log('sra ads 6')
+    console.log('sra ads 7')
 })
 
 // LAZYLOAD
